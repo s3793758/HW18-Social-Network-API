@@ -19,23 +19,23 @@ const UserSchema = new mongoose.Schema({
       return true;
     },
   },
-  reactions: [
+  //   ref match with model though
+  thoughts: [
     {
-      type: mongoose.Schema.Type.ObjectId,
-      //   ref match with model though
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Though',
     },
   ],
+  //   ref match with model user
   friends: [
     {
-      type: mongoose.Schema.Type.ObjectId,
-      //   ref match with model user
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
   ],
 });
 
-UseSchema.virtual('friendCount').get(function () {
+UserSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });
 
