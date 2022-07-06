@@ -1,5 +1,5 @@
 const express = require('express');
-require('./db');
+require('./config/db');
 const ApiRoutes = require('./routes/api');
 const app = express();
 const PORT = process.env.PORT || 3030;
