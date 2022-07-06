@@ -15,9 +15,7 @@ Router.get('/', async (req, res) => {
 
 Router.get('/:id', async (req, res) => {
   try {
-    const thought = await Thought.findOne({ _id: req.params.id })
-      .populate('thoughts')
-      .populate('friends');
+    const thought = await Thought.findOne({ _id: req.params.id });
     console.log(thought);
     res.send(thought);
   } catch (error) {
