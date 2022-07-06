@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const ThoughtSchema = new mongoose.Schema({
-  ThoughText: {
+  ThoughtText: {
     type: String,
     required: true,
     validate(value) {
       if (value < 1 || value.length > 280) {
-        throw new Error('please enter thoughText between 1 to 280.');
+        throw new Error('please enter thought Text between 1 to 280.');
       }
     },
   },
@@ -20,6 +20,6 @@ const ThoughtSchema = new mongoose.Schema({
   },
 });
 
-const Though = mongoose.model('Though', UserSchema);
+const Thought = mongoose.model('Thought', ThoughtSchema);
 
-module.exports = User;
+module.exports = Thought;
