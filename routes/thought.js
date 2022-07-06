@@ -9,15 +9,15 @@ Router.get('/', async (req, res) => {
     res.send(thoughts);
   } catch (error) {
     console.log(error);
-    res.status(500).send('Something went wrong, Please try again later');
+    res.status(500).send(error.message);
   }
 });
 
 Router.post('/', async (req, res) => {
   try {
-    const { thoughText, username } = req.body;
+    const { ThoughtText, username } = req.body;
     const thought = new Thought({
-      thoughText,
+      ThoughtText,
       username,
     });
     await thought.save();
