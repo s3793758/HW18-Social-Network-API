@@ -18,6 +18,16 @@ const ThoughtSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  reactions: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Reaction',
+    },
+  ],
+});
+
+UserSchema.virtual('reactionCount').get(function () {
+  return this.reactions.length;
 });
 
 const Thought = mongoose.model('Thought', ThoughtSchema);
