@@ -2,7 +2,7 @@ const express = require('express');
 const User = require('../models/user');
 const Router = express.Router();
 
-Router.get('/users', async (req, res) => {
+Router.get('/', async (req, res) => {
   try {
     const users = await User.find({});
     res.send(users);
@@ -11,7 +11,7 @@ Router.get('/users', async (req, res) => {
   }
 });
 
-Router.post('/users', async (req, res) => {
+Router.post('/', async (req, res) => {
   try {
     const { username, email } = req.body;
     const user = new User({
