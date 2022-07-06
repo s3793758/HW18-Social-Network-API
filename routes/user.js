@@ -7,7 +7,7 @@ Router.get('/users', async (req, res) => {
     const user = await User.find({});
     res.send(users);
   } catch (error) {
-    res.status(500).send();
+    res.status(500).send('Something went wrong, Please try again later');
   }
 });
 
@@ -21,7 +21,7 @@ Router.post('/users', async (req, res) => {
     await user.save();
     res.status(201).send(user);
   } catch (error) {
-    res.status(500).send();
+    res.status(500).send('Something went wrong, Please try again later');
   }
 });
 
