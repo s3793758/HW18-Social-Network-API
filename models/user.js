@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
   thoughts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Though',
+      ref: 'Thought',
     },
   ],
   //   ref match with model user
@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
   ],
 });
 
-UserSchema.virtual('friendCount').get(function () {
+UseSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });
 
