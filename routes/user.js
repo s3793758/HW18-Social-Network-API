@@ -40,4 +40,21 @@ Router.post('/', async (req, res) => {
   }
 });
 
+Router.patch('/:id', async (req, res) => {
+  try {
+    const updates = req.body;
+    const user = await User.findOne({ _id: req.params.id });
+    if (!user) {
+      res.status(400).send();
+    }
+    const updated = await User.findOneAndUpdate({ _id: user._id }, updates, {
+      new: true,
+    });
+    res.send(updated);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+});
+
 module.exports = Router;
