@@ -19,6 +19,9 @@ const UserSchema = new mongoose.Schema({
       return true;
     },
   },
+  reactions: [{
+    type: 
+  }]
 });
 
 const User = mongoose.model('User', UserSchema);
