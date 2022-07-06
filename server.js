@@ -1,12 +1,11 @@
 const express = require('express');
 require('./db');
-const UserRoutes = require('./routes/user');
-const ThoughtRoutes = require('./routes/thought');
+const ApiRoutes = require('./routes/api');
 const app = express();
 const PORT = process.env.PORT || 3030;
 
 app.use(express.json());
-app.use('/api', UserRoutes);
+app.use('/api', ApiRoutes);
 
 app.get('/', (req, res) => {
   res.send('Working');
