@@ -31,10 +31,10 @@ const ThoughtSchema = new mongoose.Schema({
   ],
 });
 
-ThoughtSchema.methods.toJSON = function() {
+ThoughtSchema.methods.toJSON = function () {
   const thought = this;
   const newThought = thought.toObject();
-  newThough.createdAt = new Date(newThought.createdAt).toLocalDateString(
+  newThought.createdAt = new Date(newThought.createdAt).toLocaleDateString(
     'en-US'
   );
   return newThought;
