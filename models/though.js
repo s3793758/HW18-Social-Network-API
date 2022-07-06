@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const getFormattedDate = (date) => {
-  return new Date(date).toLocaleDateString('en-US');
+const getFormattedDate = (createdDate) => {
+  return new Date(createdDate).toLocaleDateString('en-US');
 };
 
 const ThoughtSchema = new mongoose.Schema({
@@ -30,6 +30,15 @@ const ThoughtSchema = new mongoose.Schema({
     },
   ],
 });
+
+ThoughtSchema.methods.toJSON = function() {
+  const thought = this;
+  const newThought = thought.toObject();
+  newThough.createdAt = new Date(newThought.createdAt).toLocalDateString(
+    'en-US'
+  );
+  return newThought;
+};
 
 ThoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
