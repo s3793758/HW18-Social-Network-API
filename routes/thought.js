@@ -13,6 +13,19 @@ Router.get('/', async (req, res) => {
   }
 });
 
+Router.get('/:id', async (req, res) => {
+  try {
+    const thought = await Thought.findOne({ _id: req.params.id })
+      .populate('thoughts')
+      .populate('friends');
+    console.log(thought);
+    res.send(thought);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Something went wrong, Please try again later');
+  }
+});
+
 Router.post('/', async (req, res) => {
   try {
     const { ThoughtText, username } = req.body;

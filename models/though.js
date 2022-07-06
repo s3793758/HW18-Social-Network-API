@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+const getFormattedDate = (date) => {
+  return new Date(date).toLocaleDateString('en-US');
+};
+
 const ThoughtSchema = new mongoose.Schema({
   ThoughtText: {
     type: String,
@@ -13,6 +17,7 @@ const ThoughtSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+    get: getFormattedDate,
   },
   username: {
     type: String,
