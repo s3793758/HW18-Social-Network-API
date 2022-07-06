@@ -20,6 +20,6 @@ const ReactionSchema = new mongoose.Schema({
   },
 });
 
-const Reaction = mongoose.model('Though', UserSchema);
+const Reaction = mongoose.model('Reaction', ReactionSchema);
 
-module.exports = User;
+module.exports = Reaction;
