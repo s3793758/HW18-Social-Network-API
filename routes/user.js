@@ -44,13 +44,22 @@ Router.patch('/:id', async (req, res) => {
   try {
     const updates = req.body;
     const user = await User.findOne({ _id: req.params.id });
+    console.log({ user });
     if (!user) {
-      res.status(400).send();
+      res.status(400).send('no matching user found.');
     }
     const updated = await User.findOneAndUpdate({ _id: user._id }, updates, {
       new: true,
     });
     res.send(updated);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('something went wrong.');
+  }
+});
+
+Router.delete('/:id', async (req, res) => {
+  try {
   } catch (error) {
     console.log(error);
     res.status(500).send(error.message);
