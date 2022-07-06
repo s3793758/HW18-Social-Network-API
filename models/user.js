@@ -19,9 +19,20 @@ const UserSchema = new mongoose.Schema({
       return true;
     },
   },
-  reactions: [{
-    type: 
-  }]
+  reactions: [
+    {
+      type: mongoose.Schema.Type.ObjectId,
+      //   ref match with model though
+      ref: 'Though',
+    },
+  ],
+  friends: [
+    {
+      type: mongoose.Schema.Type.ObjectId,
+      //   ref match with model user
+      ref: 'User',
+    },
+  ],
 });
 
 const User = mongoose.model('User', UserSchema);
