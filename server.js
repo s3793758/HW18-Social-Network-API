@@ -1,8 +1,11 @@
 const express = require('express');
+required('./db');
+const UserRoutes = require('./routes/user');
 const app = express();
 const PORT = process.env.PORT || 3030;
 
 app.use(express.json());
+app.use('/api', UserRoutes);
 
 app.get('/', (req, res) => {
   res.send('Working');
