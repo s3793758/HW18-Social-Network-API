@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// creating user and thought, not creating reaction, adding reaction in scema
 const ReactionSchema = require('./reaction');
 
 const getFormattedDate = (createdDate) => {

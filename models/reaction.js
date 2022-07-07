@@ -29,6 +29,4 @@ ReactionSchema.methods.toJSON = function () {
   return newReaction;
 };
 
-const Reaction = mongoose.model('Reaction', ReactionSchema);
-
-module.exports = Reaction;
+module.exports = ReactionSchema;
