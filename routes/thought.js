@@ -3,6 +3,7 @@ const Thought = require('../models/though');
 const User = require('../models/user');
 const Router = express.Router();
 
+// getting though
 Router.get('/', async (req, res) => {
   try {
     const thoughts = await Thought.find({});
@@ -13,6 +14,7 @@ Router.get('/', async (req, res) => {
   }
 });
 
+// getting though ID
 Router.get('/:id', async (req, res) => {
   try {
     const thought = await Thought.findOne({ _id: req.params.id });
@@ -24,6 +26,7 @@ Router.get('/:id', async (req, res) => {
   }
 });
 
+// posting though
 Router.post('/', async (req, res) => {
   try {
     const { ThoughtText, username } = req.body;

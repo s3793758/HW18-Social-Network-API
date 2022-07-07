@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('../models/user');
 const Router = express.Router();
 
+// get user
 Router.get('/', async (req, res) => {
   try {
     const users = await User.find({});
@@ -12,6 +13,7 @@ Router.get('/', async (req, res) => {
   }
 });
 
+// get user ID
 Router.get('/:id', async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.params.id })
@@ -25,6 +27,7 @@ Router.get('/:id', async (req, res) => {
   }
 });
 
+// post user
 Router.post('/', async (req, res) => {
   try {
     const { username, email } = req.body;
@@ -40,6 +43,7 @@ Router.post('/', async (req, res) => {
   }
 });
 
+// update user 
 Router.patch('/:id', async (req, res) => {
   try {
     const updates = req.body;
@@ -59,6 +63,7 @@ Router.patch('/:id', async (req, res) => {
   }
 });
 
+// delete user
 Router.delete('/:id', async (req, res) => {
   try {
     const user = await User.findOneAndDelete({ _id: req.params.id });
