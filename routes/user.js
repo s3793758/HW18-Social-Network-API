@@ -46,7 +46,8 @@ Router.patch('/:id', async (req, res) => {
     const user = await User.findOne({ _id: req.params.id });
     console.log({ user });
     if (!user) {
-      res.status(400).send('no matching user found.');
+      // adding return so next code wont be executed
+      return res.status(400).send('no matching user found.');
     }
     const updated = await User.findOneAndUpdate({ _id: user._id }, updates, {
       new: true,
@@ -60,6 +61,11 @@ Router.patch('/:id', async (req, res) => {
 
 Router.delete('/:id', async (req, res) => {
   try {
+    const user = await User.findOneAndDelete({ _id: req.params.id });
+    if (!user) {
+      return res.status(400).send('no matching user found.');
+    }
+    res.send(user);
   } catch (error) {
     console.log(error);
     res.status(500).send(error.message);
