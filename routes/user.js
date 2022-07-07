@@ -43,7 +43,7 @@ Router.post('/', async (req, res) => {
   }
 });
 
-// update user 
+// update user
 Router.patch('/:id', async (req, res) => {
   try {
     const updates = req.body;
@@ -73,7 +73,22 @@ Router.delete('/:id', async (req, res) => {
     res.send(user);
   } catch (error) {
     console.log(error);
-    res.status(500).send(error.message);
+    res.status(500).send('something went wrong, please try again');
+  }
+});
+
+Router.post('/userId/friends/:friendId', async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.userId });
+    if (!user) {
+      return res.status(400).send('no matching user found');
+    }
+    user.friends = [...user.friends, req.params.friendId.friendId];
+    await user.save();
+    res.status(201).send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('something went wrong please try again later');
   }
 });
 

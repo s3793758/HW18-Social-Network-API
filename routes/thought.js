@@ -70,6 +70,7 @@ Router.patch('/:id', async (req, res) => {
   }
 });
 
+//adding reactions
 Router.post('/:thoughtId/reactions', async (req, res) => {
   try {
     const body = req.body;
@@ -86,6 +87,7 @@ Router.post('/:thoughtId/reactions', async (req, res) => {
   }
 });
 
+// deleting
 Router.delete('/:thoughtId/reactions/:reactionId', async (req, res) => {
   try {
     const thought = await Thought.findOne({ _id: req.params.thoughtId });
@@ -93,7 +95,6 @@ Router.delete('/:thoughtId/reactions/:reactionId', async (req, res) => {
       return res.status(400).send('no matching thought found.');
     }
     thought.reactions = thought.reactions.filter((reaction) => {
-      console.log({ reaction });
       return reaction.reactionId.toString() !== req.params.reactionId;
     });
     await thought.save();
