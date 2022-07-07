@@ -36,13 +36,37 @@ Router.post('/', async (req, res) => {
     });
     await thought.save();
 
-    const foundUser = await User.findOne({ username });
+    const foundUser = await Thought.findOne({ username });
     foundUser.thoughts = [...foundUser.thoughts, thought];
     await foundUser.save();
     res.status(201).send(thought);
   } catch (error) {
     console.log(error);
     res.status(500).send('Something went wrong, Please try again later');
+  }
+});
+
+// update though
+Router.patch('/:id', async (req, res) => {
+  try {
+    const updates = req.body;
+    const thought = await Thought.findOne({ _id: req.params.id });
+    console.log({ thought });
+    if (!thought) {
+      return res.status(400).send('no matching thought found.');
+    }
+    const updated = await Thought.findOneAndUpdate(
+      { _id: thought._id },
+      updates,
+      {
+        new: true,
+      }
+    );
+
+    res.send(updated);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
   }
 });
 
