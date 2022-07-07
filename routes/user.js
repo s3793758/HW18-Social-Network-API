@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const Thought = require('./thought');
 const Router = express.Router();
 
 // get user
@@ -70,6 +71,7 @@ Router.delete('/:id', async (req, res) => {
     if (!user) {
       return res.status(400).send('no matching user found.');
     }
+    await Thought.find({ username: user.username });
     res.send(user);
   } catch (error) {
     console.log(error);
