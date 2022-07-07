@@ -81,6 +81,25 @@ Router.post('/:thoughtId/reactions', async (req, res) => {
     await thought.save();
     res.status(200).send();
   } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+});
+
+Router.delete('/:thoughtId/reactions/:reactionId', async (req, res) => {
+  try {
+    const thought = await Thought.findOne({ _id: req.params.thoughtId });
+    if (!thought) {
+      return res.status(400).send('no matching thought found.');
+    }
+    thought.reactions = thought.reactions.filter((reaction) => {
+      console.log({ reaction });
+      return reaction.reactionId.toString() !== req.params.reactionId;
+    });
+    await thought.save();
+    res.send(thought);
+  } catch (error) {
+    console.log(error);
     res.status(500).send(error.message);
   }
 });
