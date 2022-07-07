@@ -92,4 +92,21 @@ Router.post('/userId/friends/:friendId', async (req, res) => {
   }
 });
 
+Router.delete('/userId/friends/:friendId', async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.userId });
+    if (!user) {
+      return res.status(400).send('no matching user found');
+    }
+    user.friends = user.friends.filter((friend) => {
+      return friend._id.toString() !== req.params.friendId;
+    });
+    await user.save();
+    res.status(201).send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('something went wrong please try again later');
+  }
+});
+
 module.exports = Router;
