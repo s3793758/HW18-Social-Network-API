@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ReactionSchema = require('./reaction');
 
 const getFormattedDate = (createdDate) => {
   return new Date(createdDate).toLocaleDateString('en-US');
@@ -23,12 +24,8 @@ const ThoughtSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  reactions: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Reaction',
-    },
-  ],
+  // not inserting ID, inserting the whole object
+  reactions: [ReactionSchema],
 });
 
 ThoughtSchema.methods.toJSON = function () {
