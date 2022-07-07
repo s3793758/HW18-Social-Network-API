@@ -77,6 +77,7 @@ Router.delete('/:id', async (req, res) => {
   }
 });
 
+// add friends
 Router.post('/userId/friends/:friendId', async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.params.userId });
@@ -92,6 +93,7 @@ Router.post('/userId/friends/:friendId', async (req, res) => {
   }
 });
 
+// delete friends
 Router.delete('/userId/friends/:friendId', async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.params.userId });
