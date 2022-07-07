@@ -70,4 +70,19 @@ Router.patch('/:id', async (req, res) => {
   }
 });
 
+Router.post('/:thoughtId/reactions', async (req, res) => {
+  try {
+    const body = req.body;
+    const thought = await Thought.findOne({ _id: req.params.thoughtId });
+    if (!thought) {
+      return res.status(400).send('no matching thought found.');
+    }
+    thought.reactions = [...thought.reactions, body];
+    await thought.save();
+    res.status(200).send();
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
 module.exports = Router;

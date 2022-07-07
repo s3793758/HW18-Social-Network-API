@@ -20,6 +20,15 @@ const ReactionSchema = new mongoose.Schema({
   },
 });
 
+ReactionSchema.methods.toJSON = function () {
+  const reaction = this;
+  const newReaction = reaction.toObject();
+  newReaction.createdAt = new Date(newReaction.createdAt).toLocaleDateString(
+    'en-US'
+  );
+  return newReaction;
+};
+
 const Reaction = mongoose.model('Reaction', ReactionSchema);
 
 module.exports = Reaction;
