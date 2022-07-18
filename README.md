@@ -115,7 +115,7 @@ Response:
 
 ### Screenshot: Insomnia GET Users
 
-![gif] (18-nosql-homework-demo-01.gif)
+![gif](18-nosql-homework-demo-01.gif)
 
 ## Credits
 
