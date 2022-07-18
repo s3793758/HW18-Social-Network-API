@@ -21,7 +21,7 @@ This CLI application uses npm packages `Express`, `Mongoose` and `nodemon`.
 ### 1. Git clone and go inside
 
 ```sh
-git clone https://github.com/leoelicos/social-network-api.git
+git clone https://github.com/s3793758/HW18-Social-Network-API.git
 
 cd 02-Homework
 ```
